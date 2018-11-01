@@ -11,11 +11,12 @@ let template = (
   </div>
 )
 
+let userName = "Billy"
 let templateTwo = (
   <div>
-    <h1>William Dale</h1>
+    <h1>{userName}</h1>
     <p>Age: 31</p>
-    <p>Location: New York</p>
+    <p>Locat ion: New York</p>
   </div>
 )
 

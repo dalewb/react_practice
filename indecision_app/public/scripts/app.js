@@ -31,13 +31,14 @@ var template = React.createElement(
   )
 );
 
+var userName = "Billy";
 var templateTwo = React.createElement(
   "div",
   null,
   React.createElement(
     "h1",
     null,
-    "William Dale"
+    userName
   ),
   React.createElement(
     "p",
@@ -47,7 +48,7 @@ var templateTwo = React.createElement(
   React.createElement(
     "p",
     null,
-    "Location: New York"
+    "Locat ion: New York"
   )
 );
 
