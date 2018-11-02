@@ -1,33 +1,64 @@
 "use strict";
 
-var add = function add(a, b) {
-  return a + b;
+console.log("app.js is running");
+
+var app = {
+  title: "Indecision App",
+  subtitle: "Put your life in the hands of a computer",
+  options: ["One", "Two"]
 };
 
-console.log(add(2, 3));
+function mapOptions(options) {
+  return options.map(function (option) {
+    return React.createElement(
+      "li",
+      null,
+      option
+    );
+  });
+}
 
-var user = {
-  name: "John",
-  cities: ["New Orleans", "New York"],
-  printPlacesLived: function printPlacesLived() {
-    var _this = this;
-
-    return this.cities.map(function (city) {
-      return _this.name + ' has lived in ' + city;
-    });
+function getOptions(options) {
+  if (options && options.length > 0) {
+    return React.createElement(
+      "div",
+      null,
+      React.createElement(
+        "p",
+        null,
+        "Here are your options:"
+      ),
+      React.createElement(
+        "ol",
+        null,
+        mapOptions(options)
+      )
+    );
+  } else {
+    return React.createElement(
+      "p",
+      null,
+      "No options"
+    );
   }
-};
+}
 
-console.log(user.printPlacesLived());
+var template = React.createElement(
+  "div",
+  null,
+  React.createElement(
+    "h1",
+    null,
+    app.title
+  ),
+  app.subtitle && React.createElement(
+    "p",
+    null,
+    app.subtitle
+  ),
+  getOptions(app.options)
+);
 
-var multiplier = {
-  numbers: [1, 2, 3],
-  multiplyBy: 47,
-  multiply: function multiply() {
-    return this.numbers.map(function (number) {
-      return number * multiplier.multiplyBy;
-    });
-  }
-};
+var appRoot = document.getElementById('app');
 
-console.log(multiplier.multiply());
+ReactDOM.render(template, appRoot);
