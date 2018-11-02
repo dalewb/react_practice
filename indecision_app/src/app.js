@@ -11,13 +11,20 @@ let template = (
   </div>
 )
 
+let user = {
+  name: "Billy" ,
+  age: 31,
+  location: "New Orleans"
+}
+
 let userName = "Billy"
 let userAge = 31
+let userLocation = "New Orleans"
 let templateTwo = (
   <div>
-    <h1>{userName}</h1>
-    <p>Age: {userAge}</p>
-    <p>Location: New York</p>
+    <h1>{user.name}</h1>
+    <p>Age: {user.age}</p>
+    <p>Location: {user.location}</p>
   </div>
 )
 

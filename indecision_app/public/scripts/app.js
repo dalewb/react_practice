@@ -31,26 +31,34 @@ var template = React.createElement(
   )
 );
 
+var user = {
+  name: "Billy",
+  age: 31,
+  location: "New Orleans"
+};
+
 var userName = "Billy";
 var userAge = 31;
+var userLocation = "New Orleans";
 var templateTwo = React.createElement(
   "div",
   null,
   React.createElement(
     "h1",
     null,
-    userName
+    user.name
   ),
   React.createElement(
     "p",
     null,
     "Age: ",
-    userAge
+    user.age
   ),
   React.createElement(
     "p",
     null,
-    "Location: New York"
+    "Location: ",
+    user.location
   )
 );
 
