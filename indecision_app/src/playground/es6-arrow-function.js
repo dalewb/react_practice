@@ -13,9 +13,9 @@
 
 const fullName = 'Julia Roberts'
 
-// let getFirstName = (name) => {
-//   return name.split(' ')[0]
-// }
+let getFirstName = (name) => {
+  return name.split(' ')[0]
+}
 
 let getFirstName = (name) => name.split(' ')[0]
 
