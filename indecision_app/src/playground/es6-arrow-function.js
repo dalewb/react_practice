@@ -1,22 +1,25 @@
-// const square = function (x) {
-//   return x * x
-// }
-//
-// // const squareArrow = (x) => {
-// //   return x * x
-// // }
-//
-// const squareArrow = (x) => x * x
-//
-// console.log(squareArrow(100))
-
-
-const fullName = 'Julia Roberts'
-
-let getFirstName = (name) => {
-  return name.split(' ')[0]
+const add = function (a,b) {
+  return a + b
 }
 
-let getFirstName = (name) => name.split(' ')[0]
+console.log(add(2,3));
 
-console.log(getFirstName(fullName));
+const user = {
+  name: "John",
+  cities: ["New Orleans", "New York"],
+  printPlacesLived() {
+    return this.cities.map(city => this.name + ' has lived in ' + city)
+  }
+}
+
+console.log(user.printPlacesLived())
+
+const multiplier = {
+  numbers: [1,2,3],
+  multiplyBy: 47,
+  multiply() {
+    return this.numbers.map(number => number * multiplier.multiplyBy)
+  }
+}
+
+console.log(multiplier.multiply());
