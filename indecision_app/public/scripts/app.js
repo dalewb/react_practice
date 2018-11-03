@@ -5,32 +5,19 @@ console.log("app.js is running");
 var app = {
   title: "Indecision App",
   subtitle: "Put your life in the hands of a computer",
-  options: []
-};
-
-var mapOptions = function mapOptions(options) {
-  return options.map(function (option, index) {
-    return React.createElement(
-      "li",
-      { key: index },
-      option
-    );
-  });
+  options: [],
+  choice: ''
 };
 
 var getOptions = function getOptions(options) {
   if (options && options.length > 0) {
-    return React.createElement(
-      "ol",
-      null,
-      options.map(function (option, index) {
-        return React.createElement(
-          "li",
-          { key: index },
-          option
-        );
-      })
-    );
+    return options.map(function (option, index) {
+      return React.createElement(
+        "li",
+        { key: index },
+        option
+      );
+    });
   }
 };
 
@@ -43,6 +30,14 @@ var handleSubmit = function handleSubmit(e) {
     e.target.elements.option.value = '';
     render();
   }
+};
+
+var onMakeDecision = function onMakeDecision() {
+  var index = function index(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  };
+  app.choice = app.options[index(app.options.length)];
+  render();
 };
 
 var removeAll = function removeAll() {
@@ -68,11 +63,6 @@ var render = function render() {
       null,
       app.subtitle
     ),
-    React.createElement(
-      "button",
-      { onClick: removeAll },
-      "Remove All"
-    ),
     app.options.length > 0 ? React.createElement(
       "p",
       null,
@@ -82,7 +72,31 @@ var render = function render() {
       null,
       "You have no options"
     ),
-    getOptions(app.options),
+    React.createElement(
+      "button",
+      { onClick: onMakeDecision },
+      "What should I do?"
+    ),
+    React.createElement(
+      "button",
+      { onClick: removeAll },
+      "Remove All"
+    ),
+    React.createElement(
+      "ol",
+      null,
+      getOptions(app.options)
+    ),
+    React.createElement(
+      "p",
+      null,
+      "You should: ",
+      app.choice && React.createElement(
+        "p",
+        null,
+        app.choice
+      )
+    ),
     React.createElement(
       "form",
       { onSubmit: handleSubmit },
