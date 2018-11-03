@@ -6,11 +6,11 @@ let app = {
   options: ["One", "Two"],
 }
 
-function mapOptions(options) {
+const mapOptions = (options) => {
   return options.map((option, index) => <li key={index}>{option}</li>)
 }
 
-function getOptions(options) {
+const getOptions = (options) => {
   if (options && options.length > 0) {
     return (
       <div>
@@ -23,12 +23,22 @@ function getOptions(options) {
   }
 }
 
+const handleSubmit = (e) => {
+  e.preventDefault()
+  console.log("Submitted")
+}
+
 let template = (
   <div>
     <h1>{app.title}</h1>
     {app.subtitle && <p>{app.subtitle}</p>}
     {getOptions(app.options)}
+    <form onSubmit={handleSubmit}>
+      <input type="text" name="option"></input>
+      <button>Add Option</button>
+    </form>
   </div>
 )
 
 const appRoot = document.getElementById('app')
+ReactDOM.render(template, appRoot)

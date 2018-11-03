@@ -8,7 +8,7 @@ var app = {
   options: ["One", "Two"]
 };
 
-function mapOptions(options) {
+var mapOptions = function mapOptions(options) {
   return options.map(function (option, index) {
     return React.createElement(
       "li",
@@ -16,9 +16,9 @@ function mapOptions(options) {
       option
     );
   });
-}
+};
 
-function getOptions(options) {
+var getOptions = function getOptions(options) {
   if (options && options.length > 0) {
     return React.createElement(
       "div",
@@ -41,7 +41,12 @@ function getOptions(options) {
       "No options"
     );
   }
-}
+};
+
+var handleSubmit = function handleSubmit(e) {
+  e.preventDefault();
+  console.log("Submitted");
+};
 
 var template = React.createElement(
   "div",
@@ -56,7 +61,18 @@ var template = React.createElement(
     null,
     app.subtitle
   ),
-  getOptions(app.options)
+  getOptions(app.options),
+  React.createElement(
+    "form",
+    { onSubmit: handleSubmit },
+    React.createElement("input", { type: "text", name: "option" }),
+    React.createElement(
+      "button",
+      null,
+      "Add Option"
+    )
+  )
 );
 
 var appRoot = document.getElementById('app');
+ReactDOM.render(template, appRoot);
