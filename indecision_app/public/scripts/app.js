@@ -21,24 +21,15 @@ var mapOptions = function mapOptions(options) {
 var getOptions = function getOptions(options) {
   if (options && options.length > 0) {
     return React.createElement(
-      "div",
+      "ol",
       null,
-      React.createElement(
-        "p",
-        null,
-        "Here are your options:"
-      ),
-      React.createElement(
-        "ol",
-        null,
-        mapOptions(options)
-      )
-    );
-  } else {
-    return React.createElement(
-      "p",
-      null,
-      "You have no options"
+      options.map(function (option, index) {
+        return React.createElement(
+          "li",
+          { key: index },
+          option
+        );
+      })
     );
   }
 };
@@ -81,6 +72,15 @@ var render = function render() {
       "button",
       { onClick: removeAll },
       "Remove All"
+    ),
+    app.options.length > 0 ? React.createElement(
+      "p",
+      null,
+      "Here are your options"
+    ) : React.createElement(
+      "p",
+      null,
+      "You have no options"
     ),
     getOptions(app.options),
     React.createElement(

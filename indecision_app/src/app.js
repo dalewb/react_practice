@@ -13,13 +13,8 @@ const mapOptions = (options) => {
 const getOptions = (options) => {
   if (options && options.length > 0) {
     return (
-      <div>
-        <p>Here are your options:</p>
-        <ol>{mapOptions(options)}</ol>
-      </div>
+      <ol>{options.map((option, index) => <li key={index}>{option}</li>)}</ol>
     )
-  } else {
-    return <p>You have no options</p>
   }
 }
 
@@ -49,6 +44,7 @@ const render = () => {
       <h1>{app.title}</h1>
       {app.subtitle && <p>{app.subtitle}</p>}
       <button onClick={removeAll}>Remove All</button>
+      {app.options.length > 0 ? <p>Here are your options</p> : <p>You have no options</p>}
       {getOptions(app.options)}
       <form onSubmit={handleSubmit}>
         <input type="text" name="option"></input>
