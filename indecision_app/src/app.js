@@ -31,19 +31,4 @@ let template = (
   </div>
 )
 
-let count = {
-  value: 0,
-}
-
-const increaseCounter = (e) => count.value++
-
-const templateTwo = (
-  <div>
-    <h1>Count: {count.value}</h1>
-    <button className="button" onClick={increaseCounter}>+1</button>
-  </div>
-)
-
 const appRoot = document.getElementById('app')
-
-ReactDOM.render(templateTwo, appRoot)
