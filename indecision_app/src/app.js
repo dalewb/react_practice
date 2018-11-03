@@ -7,7 +7,7 @@ let app = {
 }
 
 function mapOptions(options) {
-  return options.map(option => <li>{option}</li>)
+  return options.map((option, index) => <li key={index}>{option}</li>)
 }
 
 function getOptions(options) {
@@ -31,6 +31,19 @@ let template = (
   </div>
 )
 
+let count = {
+  value: 0,
+}
+
+const increaseCounter = (e) => count.value++
+
+const templateTwo = (
+  <div>
+    <h1>Count: {count.value}</h1>
+    <button className="button" onClick={increaseCounter}>+1</button>
+  </div>
+)
+
 const appRoot = document.getElementById('app')
 
-ReactDOM.render(template, appRoot)
+ReactDOM.render(templateTwo, appRoot)

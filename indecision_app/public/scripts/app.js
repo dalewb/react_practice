@@ -9,10 +9,10 @@ var app = {
 };
 
 function mapOptions(options) {
-  return options.map(function (option) {
+  return options.map(function (option, index) {
     return React.createElement(
       "li",
-      null,
+      { key: index },
       option
     );
   });
@@ -59,6 +59,30 @@ var template = React.createElement(
   getOptions(app.options)
 );
 
+var count = {
+  value: 0
+};
+
+var increaseCounter = function increaseCounter(e) {
+  return count.value++;
+};
+
+var templateTwo = React.createElement(
+  "div",
+  null,
+  React.createElement(
+    "h1",
+    null,
+    "Count: ",
+    count.value
+  ),
+  React.createElement(
+    "button",
+    { className: "button", onClick: increaseCounter },
+    "+1"
+  )
+);
+
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);
