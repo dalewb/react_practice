@@ -54,7 +54,7 @@ const render = () => {
       <ol>
         {getOptions(app.options)}
       </ol>
-      <p>You should: {app.choice && <p>{app.choice}</p>}</p>
+      <p>{app.choice && <p>You should {app.choice}</p>}</p>
       <form onSubmit={handleSubmit}>
         <input type="text" name="option"></input>
         <button>Add Option</button>

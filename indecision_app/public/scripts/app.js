@@ -90,10 +90,10 @@ var render = function render() {
     React.createElement(
       "p",
       null,
-      "You should: ",
       app.choice && React.createElement(
         "p",
         null,
+        "You should ",
         app.choice
       )
     ),
