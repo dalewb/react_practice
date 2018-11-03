@@ -5,7 +5,7 @@ console.log("app.js is running");
 var app = {
   title: "Indecision App",
   subtitle: "Put your life in the hands of a computer",
-  options: ["One", "Two"]
+  options: []
 };
 
 var mapOptions = function mapOptions(options) {
@@ -38,41 +38,63 @@ var getOptions = function getOptions(options) {
     return React.createElement(
       "p",
       null,
-      "No options"
+      "You have no options"
     );
   }
 };
 
 var handleSubmit = function handleSubmit(e) {
   e.preventDefault();
-  console.log("Submitted");
+  var option = e.target.elements.option.value;
+
+  if (option) {
+    app.options.push(option);
+    e.target.elements.option.value = '';
+    render();
+  }
 };
 
-var template = React.createElement(
-  "div",
-  null,
-  React.createElement(
-    "h1",
-    null,
-    app.title
-  ),
-  app.subtitle && React.createElement(
-    "p",
-    null,
-    app.subtitle
-  ),
-  getOptions(app.options),
-  React.createElement(
-    "form",
-    { onSubmit: handleSubmit },
-    React.createElement("input", { type: "text", name: "option" }),
-    React.createElement(
-      "button",
-      null,
-      "Add Option"
-    )
-  )
-);
+var removeAll = function removeAll() {
+  if (app.options.length > 0) {
+    app.options = [];
+    render();
+  }
+};
 
 var appRoot = document.getElementById('app');
-ReactDOM.render(template, appRoot);
+
+var render = function render() {
+  var template = React.createElement(
+    "div",
+    null,
+    React.createElement(
+      "h1",
+      null,
+      app.title
+    ),
+    app.subtitle && React.createElement(
+      "p",
+      null,
+      app.subtitle
+    ),
+    React.createElement(
+      "button",
+      { onClick: removeAll },
+      "Remove All"
+    ),
+    getOptions(app.options),
+    React.createElement(
+      "form",
+      { onSubmit: handleSubmit },
+      React.createElement("input", { type: "text", name: "option" }),
+      React.createElement(
+        "button",
+        null,
+        "Add Option"
+      )
+    )
+  );
+  ReactDOM.render(template, appRoot);
+};
+
+render();

@@ -3,7 +3,7 @@ console.log("app.js is running")
 let app = {
   title: "Indecision App",
   subtitle: "Put your life in the hands of a computer",
-  options: ["One", "Two"],
+  options: [],
 }
 
 const mapOptions = (options) => {
@@ -19,26 +19,44 @@ const getOptions = (options) => {
       </div>
     )
   } else {
-    return <p>No options</p>
+    return <p>You have no options</p>
   }
 }
 
 const handleSubmit = (e) => {
   e.preventDefault()
-  console.log("Submitted")
+  const option = e.target.elements.option.value
+
+  if (option) {
+    app.options.push(option)
+    e.target.elements.option.value = ''
+    render()
+  }
 }
 
-let template = (
-  <div>
-    <h1>{app.title}</h1>
-    {app.subtitle && <p>{app.subtitle}</p>}
-    {getOptions(app.options)}
-    <form onSubmit={handleSubmit}>
-      <input type="text" name="option"></input>
-      <button>Add Option</button>
-    </form>
-  </div>
-)
+const removeAll = () => {
+  if (app.options.length > 0) {
+    app.options = []
+    render()
+  }
+}
 
 const appRoot = document.getElementById('app')
-ReactDOM.render(template, appRoot)
+
+const render = () => {
+  let template = (
+    <div>
+      <h1>{app.title}</h1>
+      {app.subtitle && <p>{app.subtitle}</p>}
+      <button onClick={removeAll}>Remove All</button>
+      {getOptions(app.options)}
+      <form onSubmit={handleSubmit}>
+        <input type="text" name="option"></input>
+        <button>Add Option</button>
+      </form>
+    </div>
+  )
+  ReactDOM.render(template, appRoot)
+}
+
+render()
