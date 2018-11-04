@@ -37,8 +37,8 @@ const onMakeDecision = () => {
 const removeAll = () => {
   if (app.options.length > 0) {
     app.options = []
-    render()
   }
+  render()
 }
 
 const appRoot = document.getElementById('app')

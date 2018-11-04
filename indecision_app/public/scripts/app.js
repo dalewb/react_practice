@@ -43,8 +43,8 @@ var onMakeDecision = function onMakeDecision() {
 var removeAll = function removeAll() {
   if (app.options.length > 0) {
     app.options = [];
-    render();
   }
+  render();
 };
 
 var appRoot = document.getElementById('app');
