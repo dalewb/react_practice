@@ -29,9 +29,9 @@ const handleSubmit = (e) => {
 }
 
 const onMakeDecision = () => {
-  let index = (max) => Math.floor(Math.random() * Math.floor(max))
-  app.choice = app.options[index(app.options.length)]
-  render()
+  let index = Math.floor(Math.random() * app.options.length)
+  let choice = app.options[index]
+  alert(choice)
 }
 
 const removeAll = () => {
@@ -49,12 +49,11 @@ const render = () => {
       <h1>{app.title}</h1>
       {app.subtitle && <p>{app.subtitle}</p>}
       {app.options.length > 0 ? <p>Here are your options</p> : <p>You have no options</p>}
-      <button onClick={onMakeDecision}>What should I do?</button>
+      <button disabled={app.options.length === 0} onClick={onMakeDecision}>What should I do?</button>
       <button onClick={removeAll}>Remove All</button>
       <ol>
         {getOptions(app.options)}
       </ol>
-      <p>{app.choice && <p>You should {app.choice}</p>}</p>
       <form onSubmit={handleSubmit}>
         <input type="text" name="option"></input>
         <button>Add Option</button>
