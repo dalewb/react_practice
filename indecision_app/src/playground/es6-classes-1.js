@@ -12,19 +12,40 @@ class Person {
 }
 
 class Student extends Person {
-  constructor(name = "Anon", age = 0, major = "Undecided") {
-    this.name = name
-    this.age = age
+  constructor(name, age, major) {
+    super(name, age)
     this.major = major
   }
-
+  hasMajor() {
+    return !!this.major
+  }
   getDescription() {
-    return `${this.name} is ${this.age} years old. I am studying ${this.major}`
+    let description = super.getDescription()
+
+    if (this.hasMajor()) {
+      description += `  Their major is ${this.major}.`
+    }
+
+    return description
   }
 }
 
-const me = new Person("Billy Dale", 31)
-console.log(me.getDescription());
+class Traveler extends Person {
+  constructor(name, age, homeLocation) {
+    super(name, age)
+    this.homeLocation = homeLocation
+  }
+  getGreeting() {
+    let greeting = super.getGreeting()
+    if (this.homeLocation) {
+      greeting += `  I am from ${this.homeLocation}.`
+    }
+    return greeting
+  }
+}
 
-const student = new Student("John Smith", 19)
-console.log(student.getDescription());
+const me = new Traveler("Billy Dale", 31, "Huntington, NY")
+console.log(me.getGreeting());
+
+const student = new Traveler()
+console.log(student.getGreeting());
