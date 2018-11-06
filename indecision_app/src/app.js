@@ -9,7 +9,6 @@ class IndecisionApp extends React.Component {
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this)
     this.handlePick = this.handlePick.bind(this)
   }
-
   handleDeleteOptions() {
     this.setState(() => {
       return {
@@ -17,13 +16,11 @@ class IndecisionApp extends React.Component {
       }
     })
   }
-
   handlePick() {
     let index = Math.floor(Math.random() * this.state.options.length)
     let choice = this.state.options[index]
     alert(choice)
   }
-
   render() {
     return (
       <div>
@@ -60,7 +57,6 @@ class Action extends React.Component {
   constructor(props) {
     super(props)
   }
-
   render() {
     return (
       <div>
@@ -76,17 +72,14 @@ class Action extends React.Component {
 }
 
 class Options extends React.Component {
-
   constructor(props) {
     super(props)
   }
-
   renderOptions() {
     return this.props.options.map(option => {
       return <Option optionText={option} key={option}/>
     })
   }
-
   render() {
     return (
       <div>
@@ -112,7 +105,6 @@ class Option extends React.Component {
 }
 
 class AddOption extends React.Component {
-
   handleSubmit(e) {
     e.preventDefault()
     const option = e.target.elements.option.value.trim()
@@ -120,7 +112,6 @@ class AddOption extends React.Component {
       alert(option)
     }
   }
-
   render() {
     return (
       <div>
