@@ -21,7 +21,7 @@ var IndecisionApp = function (_React$Component) {
     _this.state = {
       title: "Indecision",
       subtitle: "Put your life in the hands of a computer",
-      options: ['thing one', 'thing two', 'thing three']
+      options: []
     };
     _this.handleDeleteOptions = _this.handleDeleteOptions.bind(_this);
     _this.handlePick = _this.handlePick.bind(_this);
@@ -47,16 +47,17 @@ var IndecisionApp = function (_React$Component) {
     }
   }, {
     key: "handleAddOption",
-    value: function handleAddOption(e) {
-      e.preventDefault();
-      var option = e.target.elements.option.value.trim();
-      if (option) {
-        this.setState(function (prevState) {
-          return {
-            options: [].concat(_toConsumableArray(prevState.options), [option])
-          };
-        });
+    value: function handleAddOption(option) {
+      if (!option) {
+        return 'Enter valid option';
+      } else if (this.state.options.indexOf(option) > -1) {
+        return 'Option already exists';
       }
+      this.setState(function (prevState) {
+        return {
+          options: [].concat(_toConsumableArray(prevState.options), [option])
+        };
+      });
     }
   }, {
     key: "render",
@@ -215,21 +216,44 @@ var Option = function (_React$Component5) {
 var AddOption = function (_React$Component6) {
   _inherits(AddOption, _React$Component6);
 
-  function AddOption() {
+  function AddOption(props) {
     _classCallCheck(this, AddOption);
 
-    return _possibleConstructorReturn(this, (AddOption.__proto__ || Object.getPrototypeOf(AddOption)).apply(this, arguments));
+    var _this6 = _possibleConstructorReturn(this, (AddOption.__proto__ || Object.getPrototypeOf(AddOption)).call(this, props));
+
+    _this6.handleSubmit = _this6.handleSubmit.bind(_this6);
+    _this6.state = {
+      error: undefined
+    };
+    return _this6;
   }
 
   _createClass(AddOption, [{
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      var option = e.target.elements.option.value.trim();
+      var error = this.props.handleAddOption(option);
+      if (error) {
+        this.setState(function () {
+          return { error: error };
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       return React.createElement(
         "div",
         null,
+        this.state.error && React.createElement(
+          "p",
+          null,
+          this.state.error
+        ),
         React.createElement(
           "form",
-          { onSubmit: this.props.handleAddOption },
+          { onSubmit: this.handleSubmit },
           React.createElement("input", { type: "text", name: "option" }),
           React.createElement(
             "button",
