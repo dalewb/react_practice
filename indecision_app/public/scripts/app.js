@@ -21,18 +21,36 @@ var IndecisionApp = function (_React$Component) {
       subtitle: "Put your life in the hands of a computer",
       options: ['thing one', 'thing two', 'thing three']
     };
+    _this.handleDeleteOptions = _this.handleDeleteOptions.bind(_this);
     return _this;
   }
 
   _createClass(IndecisionApp, [{
+    key: "handleDeleteOptions",
+    value: function handleDeleteOptions() {
+      this.setState(function () {
+        return {
+          options: []
+        };
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return React.createElement(
         "div",
         null,
-        React.createElement(Header, { title: this.state.title, subtitle: this.state.subtitle }),
-        React.createElement(Action, { hasOptions: this.state.options.length > 0 }),
-        React.createElement(Options, { options: this.state.options }),
+        React.createElement(Header, {
+          title: this.state.title,
+          subtitle: this.state.subtitle
+        }),
+        React.createElement(Action, {
+          hasOptions: this.state.options.length > 0
+        }),
+        React.createElement(Options, {
+          options: this.state.options,
+          handleDeleteOptions: this.handleDeleteOptions
+        }),
         React.createElement(AddOption, null)
       );
     }
@@ -114,19 +132,10 @@ var Options = function (_React$Component4) {
   function Options(props) {
     _classCallCheck(this, Options);
 
-    var _this4 = _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).call(this, props));
-
-    _this4.handleRemoveAll = _this4.handleRemoveAll.bind(_this4);
-    return _this4;
+    return _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).call(this, props));
   }
 
   _createClass(Options, [{
-    key: "handleRemoveAll",
-    value: function handleRemoveAll() {
-      console.log(this.props.options);
-      // alert('removeAll')
-    }
-  }, {
     key: "renderOptions",
     value: function renderOptions() {
       return this.props.options.map(function (option) {
@@ -141,7 +150,7 @@ var Options = function (_React$Component4) {
         null,
         React.createElement(
           "button",
-          { onClick: this.handleRemoveAll },
+          { onClick: this.props.handleDeleteOptions },
           "Romove All"
         ),
         React.createElement(
