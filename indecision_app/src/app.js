@@ -7,6 +7,7 @@ class IndecisionApp extends React.Component {
       options: ['thing one', 'thing two', 'thing three'],
     }
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this)
+    this.handlePick = this.handlePick.bind(this)
   }
 
   handleDeleteOptions() {
@@ -15,6 +16,12 @@ class IndecisionApp extends React.Component {
         options: [],
       }
     })
+  }
+
+  handlePick() {
+    let index = Math.floor(Math.random() * this.state.options.length)
+    let choice = this.state.options[index]
+    alert(choice)
   }
 
   render() {
@@ -26,6 +33,7 @@ class IndecisionApp extends React.Component {
         />
         <Action
           hasOptions={this.state.options.length > 0}
+          handlePick={this.handlePick}
         />
         <Options
           options={this.state.options}
@@ -49,15 +57,15 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
-  handlePick() {
-    alert('handlePick')
+  constructor(props) {
+    super(props)
   }
 
   render() {
     return (
       <div>
         <button
-          onClick={this.handlePick}
+          onClick={this.props.handlePick}
           disabled={!this.props.hasOptions}
         >
           What should I do?
@@ -82,7 +90,11 @@ class Options extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.props.handleDeleteOptions}>Romove All</button>
+        <button
+          onClick={this.props.handleDeleteOptions}
+        >
+          Romove All
+        </button>
         <ol>
           {this.props.options ? this.renderOptions() : null}
         </ol>

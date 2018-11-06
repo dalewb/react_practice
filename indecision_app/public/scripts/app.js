@@ -22,6 +22,7 @@ var IndecisionApp = function (_React$Component) {
       options: ['thing one', 'thing two', 'thing three']
     };
     _this.handleDeleteOptions = _this.handleDeleteOptions.bind(_this);
+    _this.handlePick = _this.handlePick.bind(_this);
     return _this;
   }
 
@@ -35,6 +36,13 @@ var IndecisionApp = function (_React$Component) {
       });
     }
   }, {
+    key: "handlePick",
+    value: function handlePick() {
+      var index = Math.floor(Math.random() * this.state.options.length);
+      var choice = this.state.options[index];
+      alert(choice);
+    }
+  }, {
     key: "render",
     value: function render() {
       return React.createElement(
@@ -45,7 +53,8 @@ var IndecisionApp = function (_React$Component) {
           subtitle: this.state.subtitle
         }),
         React.createElement(Action, {
-          hasOptions: this.state.options.length > 0
+          hasOptions: this.state.options.length > 0,
+          handlePick: this.handlePick
         }),
         React.createElement(Options, {
           options: this.state.options,
@@ -94,18 +103,13 @@ var Header = function (_React$Component2) {
 var Action = function (_React$Component3) {
   _inherits(Action, _React$Component3);
 
-  function Action() {
+  function Action(props) {
     _classCallCheck(this, Action);
 
-    return _possibleConstructorReturn(this, (Action.__proto__ || Object.getPrototypeOf(Action)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (Action.__proto__ || Object.getPrototypeOf(Action)).call(this, props));
   }
 
   _createClass(Action, [{
-    key: "handlePick",
-    value: function handlePick() {
-      alert('handlePick');
-    }
-  }, {
     key: "render",
     value: function render() {
       return React.createElement(
@@ -114,7 +118,7 @@ var Action = function (_React$Component3) {
         React.createElement(
           "button",
           {
-            onClick: this.handlePick,
+            onClick: this.props.handlePick,
             disabled: !this.props.hasOptions
           },
           "What should I do?"
@@ -150,7 +154,9 @@ var Options = function (_React$Component4) {
         null,
         React.createElement(
           "button",
-          { onClick: this.props.handleDeleteOptions },
+          {
+            onClick: this.props.handleDeleteOptions
+          },
           "Romove All"
         ),
         React.createElement(
