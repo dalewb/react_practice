@@ -8,6 +8,17 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var obj = {
+  name: "John",
+  getName: function getName() {
+    return this.name;
+  }
+};
+
+var getName = obj.getName.bind(obj);
+
+console.log(getName());
+
 var IndecisionApp = function (_React$Component) {
   _inherits(IndecisionApp, _React$Component);
 
@@ -112,6 +123,12 @@ var Options = function (_React$Component4) {
   }
 
   _createClass(Options, [{
+    key: "handleRemoveAll",
+    value: function handleRemoveAll() {
+      console.log(this.props.options);
+      // alert('removeAll')
+    }
+  }, {
     key: "renderOptions",
     value: function renderOptions() {
       return this.props.options.map(function (option) {
@@ -124,7 +141,11 @@ var Options = function (_React$Component4) {
       return React.createElement(
         "div",
         null,
-        "Options Component Here",
+        React.createElement(
+          "button",
+          { onClick: this.handleRemoveAll },
+          "Romove All"
+        ),
         React.createElement(
           "ol",
           null,
@@ -170,12 +191,30 @@ var AddOption = function (_React$Component6) {
   }
 
   _createClass(AddOption, [{
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      var option = e.target.elements.option.value.trim();
+      if (option) {
+        alert(option);
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       return React.createElement(
         "div",
         null,
-        "Add functionality will be here"
+        React.createElement(
+          "form",
+          { onSubmit: this.handleSubmit },
+          React.createElement("input", { type: "text", name: "option" }),
+          React.createElement(
+            "button",
+            null,
+            "Add Option"
+          )
+        )
       );
     }
   }]);
