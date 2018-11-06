@@ -2,6 +2,8 @@
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -23,6 +25,7 @@ var IndecisionApp = function (_React$Component) {
     };
     _this.handleDeleteOptions = _this.handleDeleteOptions.bind(_this);
     _this.handlePick = _this.handlePick.bind(_this);
+    _this.handleAddOption = _this.handleAddOption.bind(_this);
     return _this;
   }
 
@@ -43,6 +46,19 @@ var IndecisionApp = function (_React$Component) {
       alert(choice);
     }
   }, {
+    key: "handleAddOption",
+    value: function handleAddOption(e) {
+      e.preventDefault();
+      var option = e.target.elements.option.value.trim();
+      if (option) {
+        this.setState(function (prevState) {
+          return {
+            options: [].concat(_toConsumableArray(prevState.options), [option])
+          };
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       return React.createElement(
@@ -60,7 +76,9 @@ var IndecisionApp = function (_React$Component) {
           options: this.state.options,
           handleDeleteOptions: this.handleDeleteOptions
         }),
-        React.createElement(AddOption, null)
+        React.createElement(AddOption, {
+          handleAddOption: this.handleAddOption
+        })
       );
     }
   }]);
@@ -204,15 +222,6 @@ var AddOption = function (_React$Component6) {
   }
 
   _createClass(AddOption, [{
-    key: "handleSubmit",
-    value: function handleSubmit(e) {
-      e.preventDefault();
-      var option = e.target.elements.option.value.trim();
-      if (option) {
-        alert(option);
-      }
-    }
-  }, {
     key: "render",
     value: function render() {
       return React.createElement(
@@ -220,7 +229,7 @@ var AddOption = function (_React$Component6) {
         null,
         React.createElement(
           "form",
-          { onSubmit: this.handleSubmit },
+          { onSubmit: this.props.handleAddOption },
           React.createElement("input", { type: "text", name: "option" }),
           React.createElement(
             "button",

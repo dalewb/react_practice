@@ -8,6 +8,7 @@ class IndecisionApp extends React.Component {
     }
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this)
     this.handlePick = this.handlePick.bind(this)
+    this.handleAddOption = this.handleAddOption.bind(this)
   }
   handleDeleteOptions() {
     this.setState(() => {
@@ -20,6 +21,17 @@ class IndecisionApp extends React.Component {
     let index = Math.floor(Math.random() * this.state.options.length)
     let choice = this.state.options[index]
     alert(choice)
+  }
+  handleAddOption(e) {
+    e.preventDefault()
+    const option = e.target.elements.option.value.trim()
+    if (option) {
+      this.setState((prevState) => {
+        return {
+          options: [...prevState.options, option]
+        }
+      })
+    }
   }
   render() {
     return (
@@ -36,7 +48,9 @@ class IndecisionApp extends React.Component {
           options={this.state.options}
           handleDeleteOptions={this.handleDeleteOptions}
         />
-        <AddOption />
+        <AddOption
+          handleAddOption={this.handleAddOption}
+        />
       </div>
     )
   }
@@ -105,17 +119,10 @@ class Option extends React.Component {
 }
 
 class AddOption extends React.Component {
-  handleSubmit(e) {
-    e.preventDefault()
-    const option = e.target.elements.option.value.trim()
-    if (option) {
-      alert(option)
-    }
-  }
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.props.handleAddOption}>
           <input type="text" name="option"></input>
           <button>Add Option</button>
         </form>
