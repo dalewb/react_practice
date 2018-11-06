@@ -8,13 +8,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Visibility = function (_React$Component) {
-  _inherits(Visibility, _React$Component);
+var VisibilityToggle = function (_React$Component) {
+  _inherits(VisibilityToggle, _React$Component);
 
-  function Visibility() {
-    _classCallCheck(this, Visibility);
+  function VisibilityToggle(props) {
+    _classCallCheck(this, VisibilityToggle);
 
-    var _this = _possibleConstructorReturn(this, (Visibility.__proto__ || Object.getPrototypeOf(Visibility)).call(this));
+    var _this = _possibleConstructorReturn(this, (VisibilityToggle.__proto__ || Object.getPrototypeOf(VisibilityToggle)).call(this, props));
 
     _this.state = {
       details: "Some details to show",
@@ -24,7 +24,7 @@ var Visibility = function (_React$Component) {
     return _this;
   }
 
-  _createClass(Visibility, [{
+  _createClass(VisibilityToggle, [{
     key: "handleToggle",
     value: function handleToggle() {
       this.setState(function (prevState) {
@@ -58,52 +58,7 @@ var Visibility = function (_React$Component) {
     }
   }]);
 
-  return Visibility;
+  return VisibilityToggle;
 }(React.Component);
 
-ReactDOM.render(React.createElement(Visibility, null), document.getElementById('app'));
-
-// let state = {
-//   show: false,
-//   details: ["these are some details we can now see!"]
-// }
-//
-// const onToggleDetails = () => {
-//   state.show = !state.show
-//   render()
-// }
-//
-// const renderButton = () => {
-//   if (!state.show) {
-//     return <button onClick={onToggleDetails}>Show Details</button>
-//   } else {
-//     return <button onClick={onToggleDetails}>Hide Details</button>
-//   }
-// }
-//
-// const renderDetails = () => {
-//   if (state.details.length > 0) {
-//     return state.details.map(detail => {
-//       return <li key={detail}>{detail}</li>
-//     })
-//   } else {
-//     return <p>There are no details to show</p>
-//   }
-// }
-//
-// let appRoot = document.getElementById('app');
-//
-// const render = () => {
-//   const template = (
-//     <div>
-//       <h1>Visibility Toggle</h1>
-//       {renderButton()}
-//       <ol>
-//         {state.show ? renderDetails() : null}
-//       </ol>
-//     </div>
-//   )
-//   ReactDOM.render(template, appRoot)
-// }
-//
-// render()
+ReactDOM.render(React.createElement(VisibilityToggle, null), document.getElementById('app'));
