@@ -4,7 +4,7 @@ class IndecisionApp extends React.Component {
     this.state = {
       title: "Indecision",
       subtitle: "Put your life in the hands of a computer",
-      options: props.options,
+      options: [],
     }
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this)
     this.handlePick = this.handlePick.bind(this)
@@ -88,10 +88,6 @@ class IndecisionApp extends React.Component {
       </div>
     )
   }
-}
-
-IndecisionApp.defaultProps = {
-  options: []
 }
 
 const Header = (props) => {
