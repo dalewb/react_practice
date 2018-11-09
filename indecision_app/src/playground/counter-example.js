@@ -2,7 +2,7 @@ class Counter extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      count: props.count,
+      count: 0,
     }
     this.handlePlusOne = this.handlePlusOne.bind(this)
     this.handleMinusOne = this.handleMinusOne.bind(this)
@@ -43,10 +43,6 @@ class Counter extends React.Component {
       </div>
     )
   }
-}
-
-Counter.defaultProps = {
-  count: 0,
 }
 
 ReactDOM.render(<Counter />, document.getElementById('app'))
