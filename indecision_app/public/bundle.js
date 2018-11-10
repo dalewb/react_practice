@@ -500,6 +500,10 @@ var _AddOption = __webpack_require__(17);
 
 var _AddOption2 = _interopRequireDefault(_AddOption);
 
+var _Option = __webpack_require__(18);
+
+var _Option2 = _interopRequireDefault(_Option);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -668,7 +672,7 @@ var Action = function Action(props) {
 var Options = function Options(props) {
   var renderOptions = function renderOptions() {
     return props.options.map(function (option) {
-      return _react2.default.createElement(Option, {
+      return _react2.default.createElement(_Option2.default, {
         optionText: option,
         key: option,
         handleDeleteOption: props.handleDeleteOption
@@ -695,27 +699,6 @@ var Options = function Options(props) {
       'ol',
       null,
       props.options ? renderOptions() : null
-    )
-  );
-};
-
-var Option = function Option(props) {
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(
-      'li',
-      null,
-      props.optionText
-    ),
-    _react2.default.createElement(
-      'button',
-      {
-        onClick: function onClick(e) {
-          props.handleDeleteOption(props.optionText);
-        }
-      },
-      'Remove'
     )
   );
 };
@@ -23843,6 +23826,46 @@ var AddOption = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = AddOption;
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Option = function Option(props) {
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'li',
+      null,
+      props.optionText
+    ),
+    _react2.default.createElement(
+      'button',
+      {
+        onClick: function onClick(e) {
+          props.handleDeleteOption(props.optionText);
+        }
+      },
+      'Remove'
+    )
+  );
+};
+
+exports.default = Option;
 
 /***/ })
 /******/ ]);
