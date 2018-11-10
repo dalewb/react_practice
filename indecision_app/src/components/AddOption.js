@@ -18,7 +18,7 @@ export default class AddOption extends React.Component {
         this.setState(() => ({ error: undefined }))
       }
     }
-  }
+  };
 
   render() {
     return (

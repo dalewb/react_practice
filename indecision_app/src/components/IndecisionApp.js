@@ -9,23 +9,23 @@ class IndecisionApp extends React.Component {
     title: "Indecision App",
     subtitle: "Put your life in the hands of a computer",
     options: [],
-  }
+  };
 
   handleDeleteOptions = () => {
     this.setState(() => ({options: []}))
-  }
+  };
 
   handleDeleteOption = (optionToRemove) => {
     this.setState((prevState) => ({
       options: prevState.options.filter(option => option !== optionToRemove)
     }))
-  }
+  };
 
   handlePick = () => {
     let index = Math.floor(Math.random() * this.state.options.length)
     let choice = this.state.options[index]
     alert(choice)
-  }
+  };
 
   handleAddOption = (option) => {
     if (!option) {
@@ -37,7 +37,7 @@ class IndecisionApp extends React.Component {
     this.setState((prevState) => ({
       options: [...prevState.options, option]
     }))
-  }
+  };
 
   componentDidMount() {
     try {
