@@ -27,7 +27,7 @@ class IndecisionApp extends React.Component {
         this.setState(() => ({ options }))
       }
     } catch(e) {
-      // Do nothing
+      console.log("Error: ", e)
     }
   }
 
@@ -35,12 +35,7 @@ class IndecisionApp extends React.Component {
     if (prevState.options.length !== this.state.options.length) {
       const json = JSON.stringify(this.state.options)
       localStorage.setItem('options', json)
-      console.log('save data');
     }
-  }
-
-  componentWillUnmount() {
-    console.log('component will unmount')
   }
 
   handleDeleteOptions() {
@@ -60,7 +55,6 @@ class IndecisionApp extends React.Component {
   }
 
   handleAddOption(option) {
-
     if (!option) {
       return 'Enter valid option'
     } else if (this.state.options.indexOf(option) > -1) {
@@ -70,7 +64,6 @@ class IndecisionApp extends React.Component {
     this.setState((prevState) => ({
       options: [...prevState.options, option]
     }))
-
   }
 
   render() {

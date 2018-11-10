@@ -23876,7 +23876,7 @@ var IndecisionApp = function (_React$Component) {
           });
         }
       } catch (e) {
-        // Do nothing
+        console.log("Error: ", e);
       }
     }
   }, {
@@ -23885,13 +23885,7 @@ var IndecisionApp = function (_React$Component) {
       if (prevState.options.length !== this.state.options.length) {
         var json = JSON.stringify(this.state.options);
         localStorage.setItem('options', json);
-        console.log('save data');
       }
-    }
-  }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      console.log('component will unmount');
     }
   }, {
     key: 'handleDeleteOptions',
@@ -23921,7 +23915,6 @@ var IndecisionApp = function (_React$Component) {
   }, {
     key: 'handleAddOption',
     value: function handleAddOption(option) {
-
       if (!option) {
         return 'Enter valid option';
       } else if (this.state.options.indexOf(option) > -1) {
