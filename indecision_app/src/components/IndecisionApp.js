@@ -31,6 +31,12 @@ class IndecisionApp extends React.Component {
     }))
   };
 
+  handleClearSelectedOption = () => {
+    this.setState(() => ({
+      selectedOption: undefined,
+    }))
+  };
+
   handleAddOption = (option) => {
     if (!option) {
       return 'Enter valid option'
@@ -42,12 +48,6 @@ class IndecisionApp extends React.Component {
       options: [...prevState.options, option]
     }))
   };
-
-  handleClearSelectedOption = () => {
-    this.setState(() => ({
-      selectedOption: undefined,
-    }))
-  }
 
   componentDidMount() {
     try {
