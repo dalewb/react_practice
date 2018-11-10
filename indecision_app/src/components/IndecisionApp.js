@@ -5,17 +5,38 @@ import Header from './Header';
 import Action from './Action';
 
 class IndecisionApp extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      title: "Indecision App",
-      subtitle: "Put your life in the hands of a computer",
-      options: [],
+  state = {
+    title: "Indecision App",
+    subtitle: "Put your life in the hands of a computer",
+    options: [],
+  }
+
+  handleDeleteOptions = () => {
+    this.setState(() => ({options: []}))
+  }
+
+  handleDeleteOption = (optionToRemove) => {
+    this.setState((prevState) => ({
+      options: prevState.options.filter(option => option !== optionToRemove)
+    }))
+  }
+
+  handlePick = () => {
+    let index = Math.floor(Math.random() * this.state.options.length)
+    let choice = this.state.options[index]
+    alert(choice)
+  }
+
+  handleAddOption = (option) => {
+    if (!option) {
+      return 'Enter valid option'
+    } else if (this.state.options.indexOf(option) > -1) {
+      return 'Option already exists'
     }
-    this.handleDeleteOptions = this.handleDeleteOptions.bind(this)
-    this.handlePick = this.handlePick.bind(this)
-    this.handleAddOption = this.handleAddOption.bind(this)
-    this.handleDeleteOption = this.handleDeleteOption.bind(this)
+
+    this.setState((prevState) => ({
+      options: [...prevState.options, option]
+    }))
   }
 
   componentDidMount() {
@@ -36,34 +57,6 @@ class IndecisionApp extends React.Component {
       const json = JSON.stringify(this.state.options)
       localStorage.setItem('options', json)
     }
-  }
-
-  handleDeleteOptions() {
-    this.setState(() => ({options: []}))
-  }
-
-  handleDeleteOption(optionToRemove) {
-    this.setState((prevState) => ({
-      options: prevState.options.filter(option => option !== optionToRemove)
-    }))
-  }
-
-  handlePick() {
-    let index = Math.floor(Math.random() * this.state.options.length)
-    let choice = this.state.options[index]
-    alert(choice)
-  }
-
-  handleAddOption(option) {
-    if (!option) {
-      return 'Enter valid option'
-    } else if (this.state.options.indexOf(option) > -1) {
-      return 'Option already exists'
-    }
-
-    this.setState((prevState) => ({
-      options: [...prevState.options, option]
-    }))
   }
 
   render() {
