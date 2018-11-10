@@ -23592,9 +23592,11 @@ var AddOption = function (_React$Component) {
         });
       } else {
         e.target.reset();
-        this.setState(function () {
-          return { error: undefined };
-        });
+        if (this.state.error) {
+          this.setState(function () {
+            return { error: undefined };
+          });
+        }
       }
     }
   }, {
