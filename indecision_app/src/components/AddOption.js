@@ -17,6 +17,7 @@ export default class AddOption extends React.Component {
       this.setState(() => ({ error }))
     } else {
       e.target.reset()
+      this.setState(() => ({ error:undefined }))
     }
   }
 
