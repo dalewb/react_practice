@@ -28,22 +28,14 @@ store.dispatch({
   type: 'INCREMENT'
 });
 
-store.dispatch({
-  type: 'INCREMENT'
-});
-
-store.dispatch({
-  type: 'RESET'
-});
-
 // Decrement the count
 store.dispatch({
   type: 'DECREMENT'
 });
 
 // Reset the count
-// store.dispatch({
-//   type: 'RESET'
-// });
+store.dispatch({
+  type: 'RESET'
+});
 
 console.log(store.getState());
