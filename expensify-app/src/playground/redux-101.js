@@ -16,6 +16,11 @@ const store = createStore((state = { count: 0 }, action) => {
       return {
         count: 0
       }
+    case 'SET':
+      const count = action.count
+      return {
+        count
+      }
     default:
       return state
   }
@@ -43,3 +48,9 @@ store.dispatch({
 store.dispatch({
   type: 'RESET'
 });
+
+// Set the count
+store.dispatch({
+  type: 'SET',
+  count: 101,
+})
