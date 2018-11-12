@@ -7,4 +7,4 @@ const ContactMePage = () => (
   </div>
 )
 
-export default ContactMePage
+export default ContactMePage;

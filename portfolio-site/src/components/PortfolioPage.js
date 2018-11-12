@@ -1,12 +1,13 @@
 import React from 'react';
-import { Link } from 'react';
-import Item from './Item'
+import { Link } from 'react-router-dom';
+import ItemPage from './ItemPage';
 
 const PortfolioPage = () => (
   <div>
     <h1>My Work</h1>
     <p>Check out the things I've done:</p>
-    <Route path="/portfolio/:id" component={Item}/>
+    <Link to="/portfolio/1">Item One</Link>
+    <Link to="/portfolio/2">Item Two</Link>
   </div>
 )
 
