@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ItemPage from './ItemPage';
 
 const PortfolioPage = () => (
   <div>
