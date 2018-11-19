@@ -11,9 +11,41 @@ import { createStore, combineReducers } from 'redux';
 
 // Expenses Reducer
 
-const expensesReducer = (state = [], action) => {
-  
+const expensesReducerDefaultState = []
+
+const expensesReducer = (state = expensesReducerDefaultState, action) => {
+  switch (action.type) {
+    default:
+      return state;
+  }
 }
+
+// Filters Reducer
+
+const filtersReducerDefaultState = {
+  text: '',
+  sortBy: 'date',
+  stareDate: null,
+  endDate: null,
+}
+
+const filtersReducer = (state = filtersReducerDefaultState, action) => {
+  switch (action.type) {
+    default:
+    return state;
+  }
+}
+
+// Store Creation
+
+const store = createStore(
+  combineReducers({
+    expenses: expensesReducer,
+    filters: filtersReducer,
+  })
+)
+
+console.log(store.getState())
 
 const demoState = {
   expenses: [{
